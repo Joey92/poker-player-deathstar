@@ -24,11 +24,12 @@ func BetRequest(state *leanpoker.Game) int {
 	
 	HoleRank := rankHoleCards(p.HoleCards)
 	
+	if (HoleRank >= 18) {
+		// follow game with good hand
+		return state.CurrentBuyIn - p.Bet
+	}
+	
 	if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
-		if (HoleRank >= 18) {
-			// follow game with good hand
-			return state.CurrentBuyIn - p.Bet
-		}
 		return 0
 	}
 		
