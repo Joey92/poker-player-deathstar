@@ -2,6 +2,7 @@ package player
 
 import (
 	"github.com/Joey92/poker-player-deathstar/leanpoker"
+	"strings"
 )
 
 const VERSION = "Default Go folding player"
@@ -21,7 +22,7 @@ func BetRequest(state *leanpoker.Game) int {
 	}
 	
 	if isPair(p.HoleCards) {
-		bet += state.CurrentBuyIn * 2	
+		bet += state.CurrentBuyIn * rankHoleCards(p.HoleCards)
 	}
 	
 	/*if (len(state.CommunityCards) > 0) {
@@ -45,6 +46,22 @@ func isPair(cards []*leanpoker.Card) bool  {
 	}
 	
 	return cards[0].Rank == cards[1].Rank
+}
+
+func rankHoleCards(cards []*leanpoker.Card) int {
+	if len(cards) < 2 {
+		return 0
+	}
+	
+	card1 := rankCard(cards[0].Rank)
+	card2 := rankCard(cards[1].Rank)
+	
+	return card1 + card2
+}
+
+func rankCard(rank string) int {
+	ranks := "12345678910JQKA"
+	return strings.Index(ranks, rank) + 1
 }
 
 /*func calcComunityCards(g *leanpoker.Game, currentBet) {
