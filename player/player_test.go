@@ -2,7 +2,7 @@ package player
 
 import (
     "testing"
-    "github.com/Joey92/poker-player-deathstar/leanpoker"
+    "github.com/lean-poker/poker-player-go/leanpoker"
 )
 
 func TestShouldBePair(test *testing.T)  {

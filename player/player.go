@@ -1,7 +1,7 @@
 package player
 
 import (
-	"github.com/Joey92/poker-player-deathstar/leanpoker"
+	"github.com/lean-poker/poker-player-go/leanpoker"
 	"strings"
 )
 
