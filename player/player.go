@@ -21,8 +21,12 @@ func BetRequest(state *leanpoker.Game) int {
 	}
 	
 	if isPair(p.HoleCards) {
-		bet += 1000	
+		bet += state.CurrentBuyIn * 2	
 	}
+	
+	/*if (len(state.CommunityCards) > 0) {
+		bet += calcComunityCards(state, bet)
+	}*/
 	
 	return bet
 }
@@ -42,4 +46,8 @@ func isPair(cards []*leanpoker.Card) bool  {
 	
 	return cards[0].Rank == cards[1].Rank
 }
+
+/*func calcComunityCards(g *leanpoker.Game, currentBet) {
+	
+}*/
 
