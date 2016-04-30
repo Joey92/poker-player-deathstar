@@ -27,12 +27,12 @@ func BetRequest(state *leanpoker.Game) int {
 	if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
 		if (HoleRank >= 18) {
 			// follow game with good hand
-			return state.CurrentBuyIn
+			return state.CurrentBuyIn - p.Bet
 		}
 		return 0
 	}
 		
-		cards := append(state.CommunityCards, p.HoleCards...)
+	cards := append(state.CommunityCards, p.HoleCards...)
 	switch true {
 		case isFullHouse(cards...):
 		case isFourOfAKind(cards...):
