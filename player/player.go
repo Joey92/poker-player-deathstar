@@ -6,6 +6,7 @@ import (
 )
 
 const VERSION = "Default Go folding player"
+const MAX_RANK = 30
 
 func BetRequest(state *leanpoker.Game) int {
 	
@@ -27,6 +28,10 @@ func BetRequest(state *leanpoker.Game) int {
 	
 	if (state.CurrentBuyIn > state.CurrentBuyIn * rankHoleCards(p.HoleCards)) {
 		return 0
+	}
+	
+	if (rankHoleCards(p.HoleCards) == MAX_RANK) {
+		return 1000
 	}
 	
 	bet += rankHoleCards(p.HoleCards) * 2
