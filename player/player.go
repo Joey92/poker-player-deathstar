@@ -34,7 +34,7 @@ func BetRequest(state *leanpoker.Game) int {
 		return state.CurrentBuyIn * HoleRank
 	}
 	
-	if (state.CurrentBuyIn > state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
+	if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
 		return 0
 	}
 	
