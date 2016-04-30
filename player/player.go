@@ -18,30 +18,27 @@ func BetRequest(state *leanpoker.Game) int {
 		return 1000
 	}
 	
-	var bet int
-	
 	if (state.IsCheckable(bet)) {
-		return bet
+		return 0
 	}
 	
 	HoleRank := rankHoleCards(p.HoleCards)
 	
-	if (state.CurrentBuyIn > state.CurrentBuyIn * HoleRank || HoleRank < LOW_RANK) {
+	if (state.CurrentBuyIn > state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
 		return 0
 	}
 	
-	if (HoleRank > JQKA_RANK) {
-		// all in
-		return 1000
-	}
-	
 	if isPair(p.HoleCards) {
-		bet += state.CurrentBuyIn * HoleRank
+		
+		if (HoleRank >= JQKA_RANK) {
+			// all in
+			return 1000
+		}
+	
+		return state.CurrentBuyIn * HoleRank
 	}
 	
-	bet += HoleRank
-	
-	return bet
+	return HoleRank
 }
 
 func Showdown(state *leanpoker.Game) {
