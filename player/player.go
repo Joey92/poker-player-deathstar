@@ -5,7 +5,13 @@ import "github.com/lean-poker/poker-player-go/leanpoker"
 const VERSION = "Default Go folding player"
 
 func BetRequest(state *leanpoker.Game) int {
-	return 1000
+	var bet int
+	
+	if (state.isCheckable(bet)) {
+		return 0;
+	}
+	
+	return bet
 }
 
 func Showdown(state *leanpoker.Game) {

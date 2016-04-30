@@ -33,3 +33,7 @@ type Game struct {
 	// Finally the array of community cards.
 	CommunityCards []Card `json:"community_cards"`
 }
+
+func (g *Game) isCheckable(bet int) bool {
+	return g.CurrentBuyIn == bet
+}
