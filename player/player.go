@@ -47,6 +47,9 @@ func BetRequest(state *leanpoker.Game) int {
 			
 				return state.CurrentBuyIn + HoleRank
 			break;
+			default:
+				return HoleRank
+			break
 		}
 			
 	}
