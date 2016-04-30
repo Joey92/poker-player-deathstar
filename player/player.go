@@ -8,6 +8,7 @@ import (
 const VERSION = "Default Go folding player"
 const MAX_RANK = 30
 const JQKA_RANK = 22
+const LOW_RANK = 8
 
 func BetRequest(state *leanpoker.Game) int {
 	
@@ -23,20 +24,22 @@ func BetRequest(state *leanpoker.Game) int {
 		return bet
 	}
 	
-	if isPair(p.HoleCards) {
-		bet += state.CurrentBuyIn * rankHoleCards(p.HoleCards)
-	}
+	HoleRank := rankHoleCards(p.HoleCards)
 	
-	if (state.CurrentBuyIn > state.CurrentBuyIn * rankHoleCards(p.HoleCards)) {
+	if (state.CurrentBuyIn > state.CurrentBuyIn * HoleRank || HoleRank < LOW_RANK) {
 		return 0
 	}
 	
-	if (rankHoleCards(p.HoleCards) > JQKA_RANK) {
+	if (HoleRank > JQKA_RANK) {
 		// all in
 		return 1000
 	}
 	
-	bet += rankHoleCards(p.HoleCards) * 2
+	if isPair(p.HoleCards) {
+		bet += state.CurrentBuyIn * HoleRank
+	}
+	
+	bet += HoleRank * 2
 	
 	return bet
 }
