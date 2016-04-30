@@ -8,7 +8,7 @@ func BetRequest(state *leanpoker.Game) int {
 	var bet int
 	
 	if (state.IsCheckable(bet)) {
-		return 0;
+		return 0
 	}
 	
 	return bet
