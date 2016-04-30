@@ -34,8 +34,8 @@ type Game struct {
 	CommunityCards []*Card `json:"community_cards"`
 }
 
-func (g *Game) IsCheckable(bet int) bool {
-	return g.CurrentBuyIn == bet
+func (g *Game) IsCheckable() bool {
+	return g.CurrentBuyIn == 0
 }
 
 func (g *Game) GetPlayer() *Player {

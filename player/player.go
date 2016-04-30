@@ -18,7 +18,7 @@ func BetRequest(state *leanpoker.Game) int {
 		return 1000
 	}
 	
-	if (state.IsCheckable(bet)) {
+	if (state.IsCheckable()) {
 		return 0
 	}
 	
