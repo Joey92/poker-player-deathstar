@@ -35,11 +35,11 @@ func BetRequest(state *leanpoker.Game) int {
 	} else {
 		
 		switch true {
-			case isFourOfAKind(append(state.CommunityCards, p.HoleCards...)):
-			case isThreeOfAKind(append(state.CommunityCards, p.HoleCards...)):
+			case isFourOfAKind(append(state.CommunityCards, p.HoleCards)):
+			case isThreeOfAKind(append(state.CommunityCards, p.HoleCards)):
 				return p.Stack
 			break;
-			case isTwoPair(append(state.CommunityCards, p.HoleCards...)):
+			case isTwoPair(append(state.CommunityCards, p.HoleCards)):
 				if (HoleRank >= JQKA_RANK) {
 					// all in
 					return p.Stack
