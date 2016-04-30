@@ -1,13 +1,13 @@
 package player
 
-import "github.com/lean-poker/poker-player-go/leanpoker"
+import "github.com/Joey92/poker-player-deathstar/leanpoker"
 
 const VERSION = "Default Go folding player"
 
 func BetRequest(state *leanpoker.Game) int {
 	var bet int
 	
-	if (state.isCheckable(bet)) {
+	if (state.IsCheckable(bet)) {
 		return 0;
 	}
 	

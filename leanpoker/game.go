@@ -34,6 +34,6 @@ type Game struct {
 	CommunityCards []Card `json:"community_cards"`
 }
 
-func (g *Game) isCheckable(bet int) bool {
+func (g *Game) IsCheckable(bet int) bool {
 	return g.CurrentBuyIn == bet
 }
