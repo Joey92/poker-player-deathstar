@@ -7,6 +7,7 @@ import (
 
 const VERSION = "Default Go folding player"
 const MAX_RANK = 30
+const JQKA_RANK = 22
 
 func BetRequest(state *leanpoker.Game) int {
 	
@@ -30,7 +31,8 @@ func BetRequest(state *leanpoker.Game) int {
 		return 0
 	}
 	
-	if (rankHoleCards(p.HoleCards) == MAX_RANK) {
+	if (rankHoleCards(p.HoleCards) > JQKA_RANK) {
+		// all in
 		return 1000
 	}
 	
