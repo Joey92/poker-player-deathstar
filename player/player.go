@@ -35,6 +35,10 @@ func BetRequest(state *leanpoker.Game) int {
 	}
 	
 	if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
+		if (HoleRank >= 18) {
+			// all in
+			return state.CurrentBuyIn
+		}
 		return 0
 	}
 	
