@@ -25,6 +25,10 @@ func BetRequest(state *leanpoker.Game) int {
 		bet += state.CurrentBuyIn * rankHoleCards(p.HoleCards)
 	}
 	
+	if (state.CurrentBuyIn > state.CurrentBuyIn * rankHoleCards(p.HoleCards)) {
+		return 0
+	}
+	
 	/*if (len(state.CommunityCards) > 0) {
 		bet += calcComunityCards(state, bet)
 	}*/
