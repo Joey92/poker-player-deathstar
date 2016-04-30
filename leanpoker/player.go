@@ -28,5 +28,5 @@ type Player struct {
 
 	// The cards of the player. This is only visible for your own player
 	// except after showdown, when cards revealed are also included.
-	HoleCards []Card `json:"hole_cards"`
+	HoleCards []*Card `json:"hole_cards"`
 }

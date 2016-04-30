@@ -28,12 +28,23 @@ type Game struct {
 
 	// An array of the players. The order stays the same during the
 	// entire tournament
-	Players []Player `json:"players"`
+	Players []*Player `json:"players"`
 
 	// Finally the array of community cards.
-	CommunityCards []Card `json:"community_cards"`
+	CommunityCards []*Card `json:"community_cards"`
 }
 
 func (g *Game) IsCheckable(bet int) bool {
 	return g.CurrentBuyIn == bet
+}
+
+func (g *Game) GetPlayer() *Player {
+	for _, player := range g.Players {
+		
+		if len(player.HoleCards) > 0 {
+			return player
+		}
+	}
+	
+	return nil
 }
