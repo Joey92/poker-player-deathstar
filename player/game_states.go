@@ -39,6 +39,10 @@ func isThreeOfAKind(cards ...*leanpoker.Card) bool {
     return false
 }
 
+func isFullHouse(cards ...*leanpoker.Card) bool {
+    return isTwoPair(cards...) && isThreeOfAKind(cards...)
+}
+
 func cardRankCountInStack(stack []*leanpoker.Card) map[string]int {
 	ranks := map[string]int{}
 	for _, sCard := range stack {
