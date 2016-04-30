@@ -39,7 +39,7 @@ func BetRequest(state *leanpoker.Game) int {
 		bet += state.CurrentBuyIn * HoleRank
 	}
 	
-	bet += HoleRank * 2
+	bet += HoleRank
 	
 	return bet
 }
