@@ -24,34 +24,30 @@ func BetRequest(state *leanpoker.Game) int {
 	
 	HoleRank := rankHoleCards(p.HoleCards)
 	
-	if len(state.CommunityCards) == 0 {
-		if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
-			if (HoleRank >= 18) {
-				// follow game with good hand
-				return state.CurrentBuyIn
-			}
-			return 0
+	if (state.CurrentBuyIn > state.Pot + state.CurrentBuyIn * HoleRank || HoleRank <= LOW_RANK) {
+		if (HoleRank >= 18) {
+			// follow game with good hand
+			return state.CurrentBuyIn
 		}
-	} else {
+		return 0
+	}
 		
-		switch true {
-			case isFourOfAKind(append(state.CommunityCards, p.HoleCards...)...):
-			case isThreeOfAKind(append(state.CommunityCards, p.HoleCards...)...):
+	switch true {
+		case isFourOfAKind(append(state.CommunityCards, p.HoleCards...)...):
+		case isThreeOfAKind(append(state.CommunityCards, p.HoleCards...)...):
+			return p.Stack
+		break;
+		case isTwoPair(append(state.CommunityCards, p.HoleCards...)...):
+			if (HoleRank >= JQKA_RANK) {
+				// all in
 				return p.Stack
-			break;
-			case isTwoPair(append(state.CommunityCards, p.HoleCards...)...):
-				if (HoleRank >= JQKA_RANK) {
-					// all in
-					return p.Stack
-				}
-			
-				return state.CurrentBuyIn + HoleRank
-			break;
-			default:
-				return HoleRank
-			break
-		}
-			
+			}
+		
+			return state.CurrentBuyIn + HoleRank
+		break;
+		default:
+			return HoleRank
+		break
 	}
 	
 	return HoleRank
