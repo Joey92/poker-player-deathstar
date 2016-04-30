@@ -7,7 +7,7 @@ import (
 
 const VERSION = "Default Go folding player"
 const MAX_RANK = 30
-const JQKA_RANK = 22
+const JQKA_RANK = 20
 const LOW_RANK = 5
 
 func BetRequest(state *leanpoker.Game) int {
